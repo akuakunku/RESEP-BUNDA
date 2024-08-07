@@ -1,10 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import {
-  auth,
-  createUserProfileDocument,
-  googleAuthProvider,
-} from "../services/firebase";
+import { auth, createUserProfileDocument } from "../services/firebase";
 import "animate.css";
 import defaultProfileImage from "../assets/profile.svg";
 import BeatLoader from "react-spinners/BeatLoader";
@@ -40,79 +36,40 @@ const Signup = () => {
     setConfirmPassword(event.target.value);
   };
 
-  const handleGoogleSignup = async () => {
-    try {
-      setIsLoading(true);
-      await auth.signInWithRedirect(googleAuthProvider);
-    } catch (error) {
-      setError(error.message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    const handleRedirectResult = async () => {
-      try {
-        const result = await auth.getRedirectResult();
-        if (result.user) {
-          const user = result.user;
-          const imageURL = user.photoURL || defaultProfileImage;
-
-          await createUserProfileDocument(user, {
-            displayName: displayName,
-            photoURL: imageURL,
-          });
-
-          await user.sendEmailVerification();
-          setShowModal(true);
-          setTimeout(() => {
-            setShowModal(false);
-            navigate("/");
-          }, 3000);
-        }
-      } catch (error) {
-        setError(error.message);
-      }
-    };
-
-    handleRedirectResult();
-  }, [navigate, displayName]);
-
   const handleSignup = async (event) => {
     event.preventDefault();
-
+  
     if (password !== confirmPassword) {
       setError("Passwords do not match");
       return;
     }
-
+  
     if (!displayName || !email || !password || !confirmPassword) {
       setError("Please fill in all the fields");
       return;
     }
-
+  
     try {
       setIsLoading(true);
-
+  
       const { user } = await auth.createUserWithEmailAndPassword(email, password);
       const imageURL = defaultProfileImage;
-
+  
       await createUserProfileDocument(user, {
         displayName: displayName,
         photoURL: imageURL,
       });
-
-      await auth.signInWithEmailAndPassword(email, password);
+  
       await user.sendEmailVerification();
+      setIsLoading(false);
       setShowModal(true);
       setTimeout(() => {
         setShowModal(false);
-        navigate("/");
+        navigate("/verify-email"); // Redirect to a page that informs the user to check their email
       }, 3000);
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
-        setError("Email Sudah Terdaftar, Silahkan Login.");
+        setError("Email already in use. Please log in.");
       } else {
         setError(error.message);
       }
@@ -120,13 +77,13 @@ const Signup = () => {
       setIsLoading(false);
     }
   };
-
+  
   return (
-    <div className="flex flex-col items-center bg-wavy-purple min-h-screen ">
+    <div className="flex flex-col items-center bg-wavy-purple min-h-screen">
       <h2 className="text-3xl font-bold mb-6 animate__animated animate__fadeIn">
         Signup
       </h2>
-      <p className="mb-2 font-bold underline"> Resep Masakan Indonesia </p>
+      <p className="mb-2 font-bold underline">Resep Masakan Indonesia</p>
       {error && (
         <p className="text-red-500 mb-4 animate__animated animate__shakeX">
           {error}
@@ -209,15 +166,6 @@ const Signup = () => {
         </button>
       </form>
 
-      <button
-        type="button"
-        onClick={handleGoogleSignup}
-        className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-md mt-4 animate__animated animate__fadeIn"
-        disabled={isLoading}
-      >
-        {isLoading ? "Loading..." : "Signup with Google"}
-      </button>
-
       <p className="mt-4 animate__animated animate__fadeIn">
         Already have an account?{" "}
         <Link to="/login" className="text-blue-500">
@@ -229,9 +177,9 @@ const Signup = () => {
         <div className="fixed inset-0 flex items-center justify-center z-50">
           <div className="bg-purple-700 p-4 rounded-lg shadow-lg animate__animated animate__fadeIn">
             <p className="text-green-500 text-lg font-semibold mb-2">
-              Registration Successful!
+              Registration Successful! Please check your email to verify your account.
             </p>
-            <p>You will be redirected to the home page.</p>
+            <p>You will be redirected to the email verification page.</p>
           </div>
         </div>
       )}

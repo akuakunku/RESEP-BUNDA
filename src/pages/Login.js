@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { auth, googleAuthProvider, createUserProfileDocument } from '../services/firebase';
+import { auth, createUserProfileDocument } from '../services/firebase';
 import 'animate.css';
 import defaultProfileImage from '../assets/profile.svg';
 import BeatLoader from "react-spinners/BeatLoader";
@@ -40,7 +40,7 @@ const Login = () => {
       }, 3000);
     } catch (error) {
       if (error.code === "auth/wrong-password") {
-        setError("Password Salah!! Coba Login dengan Akun Google");
+        setError("Password Salah! Coba Lagi.");
       } else {
         setError(error.message);
       }
@@ -49,14 +49,22 @@ const Login = () => {
     }
   };
 
-  const handleLoginWithGoogle = async () => {
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const handleForgotPassword = async () => {
+    if (!email) {
+      setError('Please enter your email');
+      return;
+    }
+
     try {
-      setIsLoading(true);
-      await auth.signInWithRedirect(googleAuthProvider);
+      await auth.sendPasswordResetEmail(email);
+      setError(null);
+      alert('Password reset email sent!');
     } catch (error) {
       setError(error.message);
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -76,25 +84,6 @@ const Login = () => {
 
     handleRedirectResult();
   }, [navigate]);
-
-  const toggleShowPassword = () => {
-    setShowPassword(!showPassword);
-  };
-
-  const handleForgotPassword = async () => {
-    if (!email) {
-      setError('Please enter your email');
-      return;
-    }
-
-    try {
-      await auth.sendPasswordResetEmail(email);
-      setError(null);
-
-    } catch (error) {
-      setError(error.message);
-    }
-  };
 
   return (
     <div className="flex flex-col items-center text-center bg-wavy-purple min-h-screen">
@@ -156,13 +145,6 @@ const Login = () => {
           Signup
         </Link>
       </p>
-      <button
-        className="flex mt-4 bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-md animate__animated animate__fadeIn"
-        onClick={handleLoginWithGoogle}
-        disabled={isLoading}
-      >
-        {isLoading ? "Loading..." : "Login with Google"}
-      </button>
       <button
         className="flex mt-2 text-blue-500 hover:underline animate__animated animate__fadeIn"
         onClick={handleForgotPassword}

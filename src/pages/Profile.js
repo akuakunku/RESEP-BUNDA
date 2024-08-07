@@ -23,7 +23,7 @@ const Profile = ({ recipe }) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [newDisplayName, setNewDisplayName] = useState("");
   const [authReady, setAuthReady] = useState(false);
-
+  
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (userAuth) => {

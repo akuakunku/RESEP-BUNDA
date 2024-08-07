@@ -23,6 +23,8 @@ import RecommendationRecipes from "./components/RecommendationRecipes";
 import ErrorPage from "./pages/ErrorPage";
 import TrandingPage from "./components/TrandingPage";
 import OnlineStatus from "./utils/OnlineStatus";
+import VerifyEmail from "./pages/VerifyEmail";
+
 
 function App() {
   const [data, setData] = useState([]);
@@ -88,6 +90,7 @@ function App() {
           <Route path="/messages-list" element={<MessagesList />} />
           <Route path="/messages" element={<MessagesListFloatButton />} />
           <Route path="/float" element={<ActivityFloatButton />} />
+          <Route path="/verify-email" element={<VerifyEmail />} />
           <Route
             path="/recipes/edit/:id"
             element={<EditRecipePage user={user} />}

@@ -1,6 +1,6 @@
 rules_version = '2';
 
-// Define the Firebase Storage rules
+// Firebase Storage rules
 service firebase.storage {
   match /b/{bucket}/o {
     // Matches all files in the storage bucket
