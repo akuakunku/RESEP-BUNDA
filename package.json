@@ -1,0 +1,107 @@
+{
+  "name": "resep-masakan",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Temukan kelezatan kuliner dari resep-resep istimewa! Dari hidangan klasik hingga inovasi, nikmati petualangan rasa yang menggugah selera. Bergabunglah dalam seni memasak dengan instruksi praktis dan bahan-bahan lezat. Mari masak bersama! 🍳🍽️🌮",
+  "author": "Chesko",
+  "dependencies": {
+    "@babel/core": "^7.22.10",
+    "@babel/plugin-syntax-flow": "latest",
+    "@babel/plugin-transform-react-jsx": "latest",
+    "@babel/preset-env": "^7.22.10",
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@testing-library/dom": "^7.21.4",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^13.0.0",
+    "@testing-library/user-event": "^13.2.1",
+    "@typescript-eslint/eslint-plugin": "^6.2.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "animate.css": "^4.1.1",
+    "axios": "^1.4.0",
+    "babel-loader": "^9.1.3",
+    "css-loader": "^6.8.1",
+    "dotenv": "^16.4.5",
+    "emoji-mart": "^5.5.2",
+    "eslint": "^8.46.0",
+    "express": "^4.18.2",
+    "firebase": "^10.12.5",
+    "font-awesome": "^4.7.0",
+    "framer-motion": "^10.16.1",
+    "html-webpack-plugin": "^5.5.3",
+    "jquery": "^3.7.0",
+    "js-cookie": "^3.0.5",
+    "node-cron": "^3.0.2",
+    "os-browserify": "^0.3.0",
+    "path-browserify": "^1.0.1",
+    "postcss": "^8.4.28",
+    "react": "^18.2.0",
+    "react-app": "latest",
+    "react-bootstrap": "^2.8.0",
+    "react-bootstrap-icons": "^1.10.3",
+    "react-chat-elements": "^12.0.10",
+    "react-dom": "^18.2.0",
+    "react-draggable": "^4.4.5",
+    "react-firebase-hooks": "^5.1.1",
+    "react-icons": "^4.10.1",
+    "react-player": "^2.12.0",
+    "react-router-dom": "^6.14.2",
+    "react-scripts": "^5.0.1",
+    "react-scroll": "^1.8.9",
+    "react-share": "^4.4.1",
+    "react-slick": "^0.29.0",
+    "react-spinners": "^0.13.8",
+    "slick-carousel": "^1.8.1",
+    "style-loader": "^3.3.3",
+    "tailwindcss": "^3.3.3",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "electron": "electron .",
+    "webpack": "webpack serve"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "build": {
+    "appId": "com.resep-masakan.myapp",
+    "productName": "resep-masakan",
+    "directories": {
+      "output": "electron"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "public/logo512.png"
+    }
+  },
+  "main": "src/app.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/preset-react": "^7.22.5",
+    "electron": "^26.0.0",
+    "electron-builder": "^24.6.3",
+    "eslint-config-google": "^0.14.0"
+  }
+}

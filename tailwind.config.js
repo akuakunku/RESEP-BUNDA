@@ -1,0 +1,88 @@
+module.exports = {
+  content: ["./src/**/*.{html,js}"],
+  darkMode: "media",
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          50: "#F9FAFB",
+          100: "#F3F4F6",
+          200: "#E5E7EB",
+          300: "#D1D5DB",
+          400: "#9CA3AF",
+          500: "#6B7280",
+          600: "#4B5563",
+          700: "#374151",
+          800: "#1F2937",
+          900: "#111827",
+        },
+        secondary: {
+          50: "#FAF5FF",
+          100: "#F3E8FF",
+          200: "#E9D5FF",
+          300: "#D8B4FE",
+          400: "#C084FC",
+          500: "#A855F7",
+          600: "#9333EA",
+          700: "#7E22CE",
+          800: "#6B21A8",
+          900: "#581C87",
+        },
+        accent: {
+          50: "#FFF5F4",
+          100: "#FFE3E1",
+          200: "#FFCDCB",
+          300: "#FFB3B1",
+          400: "#FF9A96",
+          500: "#FF827D",
+          600: "#FF6A66",
+          700: "#FF534E",
+          800: "#FF3B37",
+          900: "#FF2826",
+        },
+        background: "#F5F5F5",
+        "wavy-purple": "#9bafd9",
+        dark: {
+          background: "#e9c46a",
+          primary: "#f4a261",
+        },
+        backgroundImage: {
+          wave: "linear-gradient(to bottom, #e76f51, #e9c46a, #2a9d8f)",
+        },
+      },
+      fontFamily: {
+        heading: ["Montserrat", "sans-serif"],
+        body: ["Open Sans", "sans-serif"],
+        subheading: ["Roboto", "sans-serif"],
+        logo: ["Pacifico", "cursive"],
+        fair: ["Playfair Display", "serif"],
+      },
+      fontSize: {
+        "1x1": "1rem",
+        "2xl": "1.5rem",
+        "3xl": "2rem",
+        "4xl": "2.5rem",
+      },
+      boxShadow: {
+        "md-dark": "0 4px 6px -1px rgba(0, 0, 0, 0.25)",
+        "lg-dark": "0 10px 15px -3px rgba(0, 0, 0, 0.3)",
+        "xl-dark": "0 20px 25px -5px rgba(0, 0, 0, 0.5)",
+      },
+      container: {
+        center: true,
+        padding: "1rem",
+      },
+      borderRadius: {
+        xl: "1rem",
+      },
+    },
+    screens: {
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
+    },
+  },
+  variants: {},
+  plugins: [],
+};
